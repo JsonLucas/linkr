@@ -1,6 +1,12 @@
+import { BrowserRouter } from 'react-router-dom';
+import GlobalStyle from './assets/GlobalStyle';
+import AppRoutes from './routes';
 function App() {
   return (
-    <div></div>
+    <BrowserRouter>
+      <GlobalStyle />
+      <AppRoutes />
+    </BrowserRouter>
   );
 }
 
