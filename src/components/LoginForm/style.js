@@ -25,14 +25,24 @@ export const Field = styled.input`
     padding: 15px 10px 15px 10px;
     border: none;
     border-radius: 5px;
-    ${({type}) => type === 'submit' 
-    ? `background-color: #1877F2; 
-       color: white; 
-       font-weight: bold; 
-       font-family: 'Oswald', sans-serif; 
-       font-size: 16px;` 
-    : '' }
 `;
+
+export const SubmitButton = styled.button`
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px 10px 15px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1877F2;
+    color: white; 
+    font-weight: bold; 
+    font-family: 'Oswald', sans-serif; 
+    font-size: 17px;
+    div {
+        width: 20%;
+        margin: auto;
+    }
+`; 
 
 export const RowSwitchPage = styled.p`
     box-sizing: border-box;
