@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const MainHome = styled.main`
+export const MainTimeline = styled.main`
     @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

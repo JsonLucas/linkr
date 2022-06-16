@@ -7,6 +7,7 @@ export const PostSection = styled.section`
     background-color: #FFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 16px;
+    margin-bottom: 29px;
 `
 
 export const ImgDiv = styled.div`
@@ -18,7 +19,7 @@ padding: 18px;
     }
 `
 
-export const InputDiv = styled.div`
+export const InputForm = styled.form`
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
     display: flex;
     flex-direction: column;
@@ -63,13 +64,14 @@ export const UrlInput = styled.input`
     }
 `
 
-export const ComentInput = styled.input`
+export const ComentInput = styled.textarea`
     width: 502px;
     height: 66px;
     padding: 12px;
     background: #EFEFEF;
     border-radius: 5px;
     border: none;
+    resize: none;
     ::placeholder {
         align-self: center;
         color: #949494;

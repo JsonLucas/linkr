@@ -15,7 +15,7 @@ export default function LoginForm(){
             if(response.status === 200){
                 localStorage.setItem('authorization', JSON.stringify(response.data.token));
                 alert('login efetuado com sucesso.');
-                navigate('/posts');
+                navigate('/timeline');
             }else{
                 alert(response.data);
             }
