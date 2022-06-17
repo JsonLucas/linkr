@@ -1,29 +1,6 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { HeaderHeader, MenuDiv, HeaderTittle } from "./style";
 
-export default function Header() {
-    const authorization = JSON.parse(localStorage.getItem("authorization"));
-    const [userInfo, setUserInfo] = useState({
-        name: '',
-        picture: ''
-    })
-
-    useEffect(() => {
-        const config = {
-            headers: {
-                "Authorization": `${authorization}`
-            }
-        }
-        axios.get("http://localhost:5000/getUser", config)
-            .then((res) => {
-                const { data } = res;
-                setUserInfo(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+export default function Header({ userInfo }) {
 
     return (
         <HeaderHeader>
