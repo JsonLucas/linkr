@@ -20,6 +20,7 @@ export default function Feed({ counter }) {
                 console.log(err);
             }).finally(() => {
                 setLoading(false);
+                console.log('oi');
             })
     }, [counter]);
 
