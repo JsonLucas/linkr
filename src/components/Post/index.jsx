@@ -1,14 +1,10 @@
 import { PostSection, ImgDiv, InputForm, UrlInput, ComentInput } from "./style";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function Post() {
+export default function Post({user}) {
 
     const authorization = JSON.parse(localStorage.getItem("authorization"));
-    const [userInfo, setUserInfo] = useState({
-        name: '',
-        picture: ''
-    });
     const [postInfos, setPostInfos] = useState({
         link: '',
         commenter: ''
@@ -30,7 +26,6 @@ export default function Post() {
         }, config)
             .then(() => {
                 alert("Publicação postada!");
-                window.location.reload();
             })
             .catch(e => {
                 console.log(e);
@@ -41,27 +36,10 @@ export default function Post() {
             });
     }
 
-    useEffect(() => {
-        const config = {
-            headers: {
-                "Authorization": `${authorization}`
-            }
-        }
-        axios.get("http://localhost:5000/getUser", config)
-            .then((res) => {
-                const { data } = res;
-                console.log(data);
-                setUserInfo(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-
     return (
         <PostSection>
             <ImgDiv>
-                <img src={userInfo.picture} alt="avatar-photo" />
+                <img src={user.picture} alt="avatar-photo" />
             </ImgDiv>
             <InputForm onSubmit={postPost}>
                 <h2>What are you going to share today?</h2>
@@ -70,16 +48,18 @@ export default function Post() {
                     value={postInfos.link}
                     placeholder="http://..."
                     required
+                    disabled={loading}
                     onChange={e => setPostInfos({ ...postInfos, link: e.target.value })}
                 />
                 <ComentInput
                     cols="30"
                     value={postInfos.commenter}
                     rows="10"
+                    disabled={loading}
                     placeholder="Awesome article about #javascript"
                     onChange={e => setPostInfos({ ...postInfos, commenter: e.target.value })}
                 ></ComentInput>
-                <button disabled={loading} type="submit">Publish</button>
+                <button disabled={loading} type="submit">{!loading ? 'Publish' : 'Publishing...'}</button>
             </InputForm>
         </PostSection>
     );

@@ -25,5 +25,5 @@ export const MainTimeline = styled.main`
 `
 
 export const Posts = styled.div`
-
+    margin-top: 150px;
 `

@@ -25,11 +25,11 @@ export const InputForm = styled.form`
     flex-direction: column;
     height: 100%;
     margin-right: 20px;
-    gap: 5px;
+    justify-content: space-evenly;
     h2 {
+        margin-top: 5px;
         font-family: 'Lato', sans-serif;
         font-style: normal;
-        margin-top: 20px;
         font-weight: 300;
         font-size: 20px;
         line-height: 24px;
@@ -50,6 +50,7 @@ export const InputForm = styled.form`
         background: #1877F2;
         border-radius: 5px;
         border: none;
+        margin-bottom: 5px;
     }
 `
 
