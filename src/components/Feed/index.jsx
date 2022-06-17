@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { FeedSection, ImgDiv, InfoDiv, LinkDiv } from "./style";
 
-export default function Feed() {
+export default function Feed({ counter }) {
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -21,7 +21,7 @@ export default function Feed() {
             }).finally(() => {
                 setLoading(false);
             })
-    }, []);
+    }, [counter]);
 
     const userPosts = (e) => {
         const userId = e.target;

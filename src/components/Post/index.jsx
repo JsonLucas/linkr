@@ -1,20 +1,15 @@
 import { PostSection, ImgDiv, InputForm, UrlInput, ComentInput } from "./style";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function Post() {
+export default function Post({ userInfo, setCounter }) {
 
     const authorization = JSON.parse(localStorage.getItem("authorization"));
-    const [userInfo, setUserInfo] = useState({
-        name: '',
-        picture: ''
-    });
     const [postInfos, setPostInfos] = useState({
         link: '',
         commenter: ''
     });
     const [loading, setLoading] = useState(false);
-
     function postPost(e) {
         e.preventDefault();
         setLoading(true);
@@ -30,6 +25,7 @@ export default function Post() {
         }, config)
             .then(() => {
                 alert("Publicação postada!");
+                setCounter();
             })
             .catch(e => {
                 console.log(e);
@@ -37,9 +33,9 @@ export default function Post() {
             })
             .finally(() => {
                 setLoading(false);
+                setPostInfos({ link: '', commenter: '' });
             });
     }
-
     useEffect(() => {
         const config = {
             headers: {
@@ -55,7 +51,6 @@ export default function Post() {
                 console.log(err);
             });
     }, []);
-
     return (
         <PostSection>
             <ImgDiv>
@@ -77,7 +72,7 @@ export default function Post() {
                     placeholder="Awesome article about #javascript"
                     onChange={e => setPostInfos({ ...postInfos, commenter: e.target.value })}
                 ></ComentInput>
-                <button disabled={loading} type="submit">Publish</button>
+                <button disabled={loading} type="submit">{!loading ? 'Publish' : 'Publishing...'}</button>
             </InputForm>
         </PostSection>
     );
