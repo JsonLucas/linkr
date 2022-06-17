@@ -39,6 +39,7 @@ export const ImgDiv = styled.div`
     img {
         width: 50px;
         height: 50px;
+        object-fit: cover;
         border-radius: 26.5px;
     }
 `
