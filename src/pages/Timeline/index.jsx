@@ -18,8 +18,6 @@ export default function Timeline() {
         picture: ''
     });
     const [counter, setCounter] = useState(0);
-    console.log(counter);
-
     useEffect(() => {
         const config = {
             headers: {
