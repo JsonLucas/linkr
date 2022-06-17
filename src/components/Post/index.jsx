@@ -1,6 +1,6 @@
 import { PostSection, ImgDiv, InputForm, UrlInput, ComentInput } from "./style";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect, setUserInfo } from "react";
 
 export default function Post({ userInfo, setCounter }) {
 
