@@ -1,24 +1,24 @@
 import { PostSection, ImgDiv, InputForm, UrlInput, ComentInput } from "./style";
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 
 export default function Post() {
 
-    const navigate = useNavigate();
-
     const authorization = JSON.parse(localStorage.getItem("authorization"));
-
+    const [userInfo, setUserInfo] = useState({
+        name: '',
+        picture: ''
+    });
     const [postInfos, setPostInfos] = useState({
         link: '',
         commenter: ''
     });
+    const [loading, setLoading] = useState(false);
 
     function postPost(e) {
+        setLoading(true);
         e.preventDefault();
         const { link, commenter } = postInfos;
-        console.log(postInfos)
-        console.log(authorization);
         const config = {
             headers: {
                 "Authorization": `${authorization}`
@@ -30,18 +30,38 @@ export default function Post() {
         }, config)
             .then(() => {
                 alert("Publicação postada!");
-                navigate("/timeline");
+                window.location.reload();
             })
             .catch(e => {
                 console.log(e);
-                alert("Opa, houve um erro ao tentar fazer sua publicação");
+                alert("Houve um erro ao publicar seu link");
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }
+
+    useEffect(() => {
+        const config = {
+            headers: {
+                "Authorization": `${authorization}`
+            }
+        }
+        axios.get("http://localhost:5000/getUser", config)
+            .then((res) => {
+                const { data } = res;
+                console.log(data);
+                setUserInfo(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
 
     return (
         <PostSection>
             <ImgDiv>
-                <img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000" alt="avatar-photo" />
+                <img src={userInfo.picture} alt="avatar-photo" />
             </ImgDiv>
             <InputForm onSubmit={postPost}>
                 <h2>What are you going to share today?</h2>
@@ -59,7 +79,7 @@ export default function Post() {
                     placeholder="Awesome article about #javascript"
                     onChange={e => setPostInfos({ ...postInfos, commenter: e.target.value })}
                 ></ComentInput>
-                <button type="submit">Publish</button>
+                <button disabled={loading} type="submit">Publish</button>
             </InputForm>
         </PostSection>
     );

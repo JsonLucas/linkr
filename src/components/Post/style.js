@@ -24,6 +24,7 @@ export const InputForm = styled.form`
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin-right: 20px;
     gap: 5px;
     h2 {
         font-family: 'Lato', sans-serif;

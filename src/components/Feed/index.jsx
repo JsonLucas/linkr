@@ -8,8 +8,7 @@ export default function Feed() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
-    function getPosts() {
+    useEffect(() => {
         setLoading(true);
         axios.get('http://localhost:5000/getPosts')
             .then((res) => {
@@ -18,36 +17,31 @@ export default function Feed() {
                 console.log(err);
             }).finally(() => {
                 setLoading(false);
-                console.log(posts);
             })
+    }, []);
+
+    if (!loading) {
+        return (
+            <>
+                {posts.map((el, index) => {
+                    return (
+                        <FeedSection key={index}>
+                            <ImgDiv>
+                                <img src={el.picture} alt="avatar-img" />
+                            </ImgDiv>
+                            <InfoDiv>
+                                <span>{el.name}</span>
+                                <h2>{el.commenter}</h2>
+                                <a href={el.link}>
+                                    <LinkDiv>
+
+                                    </LinkDiv>
+                                </a>
+                            </InfoDiv>
+                        </FeedSection>
+                    )
+                })}
+            </>
+        );
     }
-
-    useEffect(() => {
-        getPosts();
-    }, [])
-
-
-    if (loading) {
-        posts.map((el, index) => {
-            return (
-                <FeedSection key={index}>
-                    <ImgDiv>
-                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar-img" />
-                        {/* BOTÃO DE LIKE AQUI */}
-                    </ImgDiv>
-                    <InfoDiv>
-                        <span>Juvenal Juvêncio</span>
-                        <h2>Muito maneiro esse tutorial de Material UI com React, deem uma olhada! #react #material</h2>
-                        <a href="#">
-                            <LinkDiv>
-
-                            </LinkDiv>
-                        </a>
-                    </InfoDiv>
-                </FeedSection>
-            );
-        });
-    }
-
-    return <></>
 }
