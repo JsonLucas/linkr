@@ -12,9 +12,6 @@ export default function Timeline() {
         navigate('/login');
     }
 
-
-
-
     return (
         <MainTimeline>
             <Header />
