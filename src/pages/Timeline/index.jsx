@@ -11,6 +11,10 @@ export default function Timeline() {
     if (!authorization) {
         navigate('/login');
     }
+
+
+
+
     return (
         <MainTimeline>
             <Header />

@@ -30,7 +30,6 @@ export default function Post() {
         }, config)
             .then(() => {
                 alert("Publicação postada!");
-                window.location.reload();
             })
             .catch(e => {
                 console.log(e);
@@ -50,7 +49,6 @@ export default function Post() {
         axios.get("http://localhost:5000/getUser", config)
             .then((res) => {
                 const { data } = res;
-                console.log(data);
                 setUserInfo(data);
             })
             .catch((err) => {
@@ -79,7 +77,7 @@ export default function Post() {
                     placeholder="Awesome article about #javascript"
                     onChange={e => setPostInfos({ ...postInfos, commenter: e.target.value })}
                 ></ComentInput>
-                <button disabled={loading} type="submit">Publish</button>
+                <button disabled={loading} type="submit">{!loading ? 'Publish' : 'Publishing...'}</button>
             </InputForm>
         </PostSection>
     );
