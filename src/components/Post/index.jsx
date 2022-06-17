@@ -16,12 +16,12 @@ export default function Post() {
     const [loading, setLoading] = useState(false);
 
     function postPost(e) {
-        setLoading(true);
         e.preventDefault();
+        setLoading(true);
         const { link, commenter } = postInfos;
         const config = {
             headers: {
-                "Authorization": `${authorization}`
+                "authorization": `${authorization}`
             }
         }
         axios.post("http://localhost:5000/newPost", {
@@ -30,7 +30,6 @@ export default function Post() {
         }, config)
             .then(() => {
                 alert("Publicação postada!");
-                window.location.reload();
             })
             .catch(e => {
                 console.log(e);
@@ -44,13 +43,12 @@ export default function Post() {
     useEffect(() => {
         const config = {
             headers: {
-                "Authorization": `${authorization}`
+                "authorization": `${authorization}`
             }
         }
         axios.get("http://localhost:5000/getUser", config)
             .then((res) => {
                 const { data } = res;
-                console.log(data);
                 setUserInfo(data);
             })
             .catch((err) => {
@@ -61,7 +59,7 @@ export default function Post() {
     return (
         <PostSection>
             <ImgDiv>
-                <img src={userInfo.picture} alt="avatar-photo" />
+                <img src={userInfo.picture} alt="user avatar" />
             </ImgDiv>
             <InputForm onSubmit={postPost}>
                 <h2>What are you going to share today?</h2>
