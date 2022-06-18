@@ -63,12 +63,14 @@ export default function Post({ userInfo, setCounter }) {
                     value={postInfos.link}
                     placeholder="http://..."
                     required
+                    disabled={loading}
                     onChange={e => setPostInfos({ ...postInfos, link: e.target.value })}
                 />
                 <ComentInput
                     cols="30"
                     value={postInfos.commenter}
                     rows="10"
+                    disabled={loading}
                     placeholder="Awesome article about #javascript"
                     onChange={e => setPostInfos({ ...postInfos, commenter: e.target.value })}
                 ></ComentInput>
