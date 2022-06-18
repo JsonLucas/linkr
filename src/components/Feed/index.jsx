@@ -8,11 +8,11 @@ export default function Feed({ counter }) {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         setLoading(true);
         const authorizaztion = JSON.parse(localStorage.getItem('authorization'));
-        axios.get('http://localhost:5000/getPosts', {headers: { authorizaztion }})
+        axios.get('http://localhost:5000/getPosts', { headers: { authorizaztion } })
             .then((res) => {
                 setPosts(res.data);
             }).catch((err) => {
