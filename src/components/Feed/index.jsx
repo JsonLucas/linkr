@@ -14,13 +14,11 @@ export default function Feed({ counter }) {
         const authorizaztion = JSON.parse(localStorage.getItem('authorization'));
         axios.get('http://localhost:5000/getPosts', {headers: { authorizaztion }})
             .then((res) => {
-                console.log(res.data);
                 setPosts(res.data);
             }).catch((err) => {
                 console.log(err);
             }).finally(() => {
                 setLoading(false);
-                console.log('oi');
             })
     }, [counter]);
 

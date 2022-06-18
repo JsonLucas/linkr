@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
     box-sizing: border-box;
     width: 611px;
-    margin: 10% auto;
+    margin: 5% auto;
 `;
 
 export const RowSubtitlePage = styled.div`

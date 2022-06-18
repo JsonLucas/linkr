@@ -8,7 +8,7 @@ export default function Header({ userInfo }) {
                 <HeaderTittle>linkr</HeaderTittle>
                 <MenuDiv>
                     <ion-icon name="chevron-down-outline"></ion-icon>
-                    <img src={userInfo.picture} alt="user-picture" />
+                    <img src={userInfo.picture} alt="user-avatar" />
                 </MenuDiv>
             </section>
         </HeaderHeader>
