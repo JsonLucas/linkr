@@ -21,7 +21,7 @@ export default function Timeline() {
     useEffect(() => {
         const config = {
             headers: {
-                "Authorization": `${authorization}`
+                "authorization": `${authorization}`
             }
         }
         axios.get("http://localhost:5000/getUser", config)

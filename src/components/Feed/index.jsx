@@ -2,6 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { FeedSection, ImgDiv, InfoDiv, LinkDiv } from "./style";
+import Loading from "../Loading";
 
 export default function Feed({ counter }) {
 
@@ -24,7 +25,7 @@ export default function Feed({ counter }) {
 
     const userPosts = (e) => {
         const userId = e.target;
-        localStorage.setItem('userData', userId.className);
+        localStorage.setItem('userData', userId.title);
         navigate(`/users/${userId.innerHTML}`);
     }
 
@@ -38,7 +39,8 @@ export default function Feed({ counter }) {
                                 <img src={el.picture} alt="avatar-img" />
                             </ImgDiv>
                             <InfoDiv>
-                                <span className={`${el.name}-${el.id}`} onClick={userPosts}>{el.name}</span>
+                                <span title={`${el.name}<>${el.id}<>${el.picture}`} 
+                                onClick={userPosts}>{el.name}</span>
                                 <h2>{el.commenter}</h2>
                                 <a href={el.link}>
                                     <LinkDiv>
@@ -51,5 +53,7 @@ export default function Feed({ counter }) {
                 })}
             </>
         );
+    }else{
+        return (<Loading />);
     }
 }
