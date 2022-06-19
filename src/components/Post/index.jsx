@@ -25,6 +25,7 @@ export default function Post({ userInfo, setCounter }) {
         }, config)
             .then(() => {
                 alert("Publicação postada!");
+                setPostInfos({ link: '', commenter: '' });
                 setCounter();
             })
             .catch(e => {
@@ -33,7 +34,6 @@ export default function Post({ userInfo, setCounter }) {
             })
             .finally(() => {
                 setLoading(false);
-                setPostInfos({ link: '', commenter: '' });
             });
     }
     useEffect(() => {

@@ -1,4 +1,4 @@
-import { HeaderHeader, MenuDiv, HeaderTittle, LogoutDiv } from "./style";
+import { HeaderHeader, MenuDiv, HeaderTittle, LogoutDiv, InvisibleDiv } from "./style";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ export default function Header({ userInfo }) {
     const [showLogout, setshowLogout] = useState(false);
     const navigate = useNavigate();
     function showWindow() {
-        showLogout ? setshowLogout(false) : setshowLogout(true);
+            showLogout ? setshowLogout(false) : setshowLogout(true);
     }
 
     return (
@@ -16,8 +16,9 @@ export default function Header({ userInfo }) {
                 <MenuDiv>
                     <IoIosArrowDown style={{ position: 'absolute' }} visibility={showLogout ? 'hidden' : 'visible'} onClick={() => showWindow()} color="#fff" size="30px" name="chevron-down-outline"></IoIosArrowDown>
                     <IoIosArrowUp visibility={showLogout ? 'visible' : 'hidden'} onClick={() => showWindow()} color="#fff" size="30px" name="chevron-down-outline"></IoIosArrowUp>
-                    <img src={userInfo.picture} alt="user-picture" />
+                    <img onClick={() => showWindow()} src={userInfo.picture} alt="user-picture" />
                     <LogoutDiv hidden={showLogout}>
+                        <InvisibleDiv onClick={() => showWindow()}></InvisibleDiv>
                         <span onClick={() => { localStorage.removeItem("authorization"); navigate('/') }}>Logout</span>
                     </LogoutDiv>
                 </MenuDiv>
