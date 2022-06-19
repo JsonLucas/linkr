@@ -10,7 +10,7 @@ export default function AppRoutes(){
             <Route exact path='/' element={<SignIn />} />
             <Route exact path='/sign-up' element={<SignUp />} />
             <Route exact path='/timeline' element={<Timeline/>}></Route>
-            <Route path='/users/:username' element={<UserPosts />} />
+            <Route path='/users/:userId' element={<UserPosts />} />
         </Routes>
     );
 }

@@ -14,13 +14,14 @@ export const InfoDiv = styled.div`
     display: flex;
     flex-direction: column;
     span{
-        margin-top: 20px;
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: 400;
-        font-size: 19px;
         line-height: 23px;
-        color: #FFFFFF;
+        cursor: pointer;
+        ${({searchResult}) => searchResult 
+        ? 'color: black; margin-top: 30px; font-size: 21px; z-index: 1;' 
+        : 'color: white; margin-top: 20px; font-size: 19px;'}
         margin-bottom: 7px;
     }
     h2 {
@@ -35,12 +36,15 @@ export const InfoDiv = styled.div`
 `
 
 export const ImgDiv = styled.div`
-    padding: 18px;
+    ${({isSearchResult}) => isSearchResult 
+        ? `padding: 1px;`
+        : `padding: 18px;`
+    }
     img {
         width: 50px;
         height: 50px;
         object-fit: cover;
-        border-radius: 26.5px;
+        border-radius: 50%;
     }
 `
 

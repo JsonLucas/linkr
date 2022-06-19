@@ -39,7 +39,7 @@ export default function Timeline() {
             <Header userInfo={userInfo} />
             <Posts>
                 <h1>timeline</h1>
-                <Post userInfo={userInfo} setCounter={() => setCounter(counter + 1)} />
+                <Post userInfo={userInfo} setCounter={() => setCounter(counter + 1)} setUserInfo={setUserInfo} />
                 <Feed counter={counter} />
             </Posts>
         </MainTimeline>

@@ -1,8 +1,8 @@
 import { PostSection, ImgDiv, InputForm, UrlInput, ComentInput } from "./style";
 import axios from "axios";
-import { useState, useEffect, setUserInfo } from "react";
+import { useState, useEffect } from "react";
 
-export default function Post({ userInfo, setCounter }) {
+export default function Post({ userInfo, setCounter, setUserInfo }) {
 
     const authorization = JSON.parse(localStorage.getItem("authorization"));
     const [postInfos, setPostInfos] = useState({
