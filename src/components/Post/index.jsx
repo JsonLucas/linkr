@@ -1,56 +1,35 @@
-import { PostSection, ImgDiv, InputForm, UrlInput, ComentInput } from "./style";
-import axios from "axios";
+import { setNewPost } from "../../api/services";
 import { useState, useEffect } from "react";
+import { PostSection, ImgDiv, InputForm, UrlInput, ComentInput } from "./style";
 
-export default function Post({ userInfo, setCounter, setUserInfo }) {
-
-    const authorization = JSON.parse(localStorage.getItem("authorization"));
+export default function Post({ counter, setCounter }) {
     const [postInfos, setPostInfos] = useState({
         link: '',
         commenter: ''
     });
     const [loading, setLoading] = useState(false);
-    function postPost(e) {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    async function postPost(e) {
         e.preventDefault();
         setLoading(true);
-        const { link, commenter } = postInfos;
-        const config = {
-            headers: {
-                "authorization": `${authorization}`
-            }
-        }
-        axios.post("http://localhost:5000/newPost", {
-            link,
-            commenter
-        }, config)
-            .then(() => {
+        try {
+            const authorization = JSON.parse(localStorage.getItem("authorization"));
+            const { token } = authorization;
+            const { link, commenter } = postInfos;
+            const body = { link, commenter };
+            const response = await setNewPost(body, { authorization: token });
+            if (response.status === 201) {
                 alert("Publicação postada!");
                 setPostInfos({ link: '', commenter: '' });
-                setCounter();
-            })
-            .catch(e => {
-                console.log(e);
+                setCounter(counter + 1);
+            } else {
                 alert("Houve um erro ao publicar seu link");
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }
-    useEffect(() => {
-        const config = {
-            headers: {
-                "authorization": `${authorization}`
             }
+            setLoading(false);
+        } catch (e) {
+            console.log(e.message);
         }
-        axios.get("http://localhost:5000/getUser", config)
-            .then((res) => {
-                const { data } = res;
-                setUserInfo(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    }
     return (
         <PostSection>
             <ImgDiv>
