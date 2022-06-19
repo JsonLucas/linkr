@@ -5,6 +5,11 @@ export const loginRequest = async (body) => {
     return request;
 }
 
+export const logoutRequest = async (headers) => {
+    const request = await axiosConfig.delete('/logout', { headers });
+    return request;
+}
+
 export const signUpRequest = async (body) => {
     const request = await axiosConfig.post('/sign-up', body);
     return request;

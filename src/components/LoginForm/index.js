@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { loginRequest } from '../../api/services';
 import { ThreeCircles } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { Container, Field, SubmitButton, RowField, RowForm, RowSwitchPage } from "./style";
 
 export default function LoginForm(){
@@ -30,22 +30,6 @@ export default function LoginForm(){
         }
         setDisabled(false);
     }
-    useEffect(() => { 
-        const verificateActiveSession = async () => {
-            try{
-                const token = JSON.parse(localStorage.getItem('authorization'));
-                const response = await loginRequest({ token });
-                if(response.status === 200){
-                    navigate('/timeline');
-                }else{
-                    localStorage.removeItem('authorization');
-                }
-            }catch(e){
-                console.log(e.message);
-            }
-        }
-        verificateActiveSession();
-    });
     return (
         <Container>
             <RowForm onSubmit={login}>

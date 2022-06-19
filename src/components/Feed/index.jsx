@@ -1,31 +1,28 @@
 import { useNavigate } from "react-router";
 import { getPostsRequest } from "../../api/services";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { FeedSection, ImgDiv, InfoDiv, LinkDiv } from "./style";
 import Loading from "../Loading";
+import Post from "../Post";
 
-export default function Feed({ counter }) {
-
+export default function Feed() {
+    const [counter, setCounter] = useState(0);
     const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loadingFeed, setLoadingFeed] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
         const getPosts = async () => {
             try{
-                setLoading(true);
                 const authorizaztion = JSON.parse(localStorage.getItem('authorization'));
                 const { token } = authorizaztion
                 const response = await getPostsRequest({ authorizaztion: token });
-                if(response.status === 200){
-                    setPosts(response.data);
-                }else{
-                    alert('algum erro ocorreu.');
-                }
+                setPosts(response.data);
             }catch(e){
+                alert('algum erro ocorreu.');
                 console.log(e.message);
             }
-            setLoading(false);
+            setLoadingFeed(false);
         }
         getPosts();
     }, [counter]);
@@ -36,32 +33,32 @@ export default function Feed({ counter }) {
         localStorage.setItem('userData', JSON.stringify(data));
         navigate(`/users/${data[1]}`);
     }
+    return (
+        <Fragment>
+            <Post counter={counter} setCounter={setCounter} />
+            {loadingFeed && <Loading />}
+            {!loadingFeed && <Fragment>
+                    {posts.map((el, index) => {
+                        return (
+                            <FeedSection key={index}>
+                                <ImgDiv isSearchResult={false}>
+                                    <img src={el.picture} alt="avatar-img" />
+                                </ImgDiv>
+                                <InfoDiv>
+                                    <span title={`${el.name}<>${el.id}<>${el.picture}`} 
+                                    onClick={userPosts}>{el.name}</span>
+                                    <h2>{el.commenter}</h2>
+                                    <a href={el.link}>
+                                        <LinkDiv>
 
-    if (!loading) {
-        return (
-            <>
-                {posts.map((el, index) => {
-                    return (
-                        <FeedSection key={index}>
-                            <ImgDiv isSearchResult={false}>
-                                <img src={el.picture} alt="avatar-img" />
-                            </ImgDiv>
-                            <InfoDiv>
-                                <span title={`${el.name}<>${el.id}<>${el.picture}`} 
-                                onClick={userPosts}>{el.name}</span>
-                                <h2>{el.commenter}</h2>
-                                <a href={el.link}>
-                                    <LinkDiv>
-
-                                    </LinkDiv>
-                                </a>
-                            </InfoDiv>
-                        </FeedSection>
-                    )
-                })}
-            </>
-        );
-    }else{
-        return (<Loading />);
-    }
+                                        </LinkDiv>
+                                    </a>
+                                </InfoDiv>
+                            </FeedSection>
+                        )
+                    })}
+                </Fragment>
+            }
+        </Fragment>
+    );
 }

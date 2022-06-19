@@ -5,7 +5,7 @@ import { RowSubtitlePage, SubtitlePage, Wrapper } from "./style";
 import Header from "../../components/Header";
 import Loading from "../../components/Loading";
 export default function UserPosts() {
-    const [userPosts, setUserPosts] = useState();
+    const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState({status: false, message: 'sucess'});
     const [userData, setUserData] = useState([]);
     useEffect(() => {
@@ -15,14 +15,10 @@ export default function UserPosts() {
                 const authorization = JSON.parse(localStorage.getItem('authorization'));
                 const { token } = authorization;
                 const response = await getUserPostsRequest(parseInt(auxUserData[1]), { authorization: token });
+                console.log(`teste ${response}`);
+                setPosts(response.data);
+                setLoading({status: true, message: 'sucess'});
                 setUserData(auxUserData);
-                if(response.status === 200){
-                    setLoading({status: true, message: 'sucess'});
-                    setUserPosts(response.data);
-                }else{
-                    setLoading({status: true, message: 'failure'});
-                    alert(response.statusText);
-                }
             }catch(e){
                 console.log(e);
                 alert(e.message);
@@ -43,7 +39,7 @@ export default function UserPosts() {
                             </ImgDiv>
                             <SubtitlePage>{userData[0]}'s posts</SubtitlePage>
                         </RowSubtitlePage>
-                        {userPosts.map((el, index) => (
+                        {posts.map((el, index) => (
                                 <FeedSection key={index}>
                                     <ImgDiv>
                                         <img src={el.picture} alt="avatar-img" />
