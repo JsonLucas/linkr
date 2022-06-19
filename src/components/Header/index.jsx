@@ -12,9 +12,10 @@ import {
     SearchResults, 
     SingleSearchResult, 
     SectionIconField,
-  LogoutDiv
+    LogoutDiv,
+    InvisibleDiv
 } from "./style";
-import { IoIosClose, IoMdSearch } from 'react-icons/io';
+import { IoIosClose, IoMdSearch, IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 export default function Header({ userInfo }) {
     const [search, setSearch] = useState('');
@@ -44,7 +45,7 @@ export default function Header({ userInfo }) {
         navigate(`/users/${data[1]}`);
     }
     function showWindow() {
-        showLogout ? setshowLogout(false) : setshowLogout(true);
+            showLogout ? setshowLogout(false) : setshowLogout(true);
     }
     return (
         <HeaderHeader>
@@ -83,8 +84,9 @@ export default function Header({ userInfo }) {
                 <MenuDiv>
                     <IoIosArrowDown style={{ position: 'absolute' }} visibility={showLogout ? 'hidden' : 'visible'} onClick={() => showWindow()} color="#fff" size="30px" name="chevron-down-outline"></IoIosArrowDown>
                     <IoIosArrowUp visibility={showLogout ? 'visible' : 'hidden'} onClick={() => showWindow()} color="#fff" size="30px" name="chevron-down-outline"></IoIosArrowUp>
-                    <img src={userInfo.picture} alt="user-picture" />
+                    <img onClick={() => showWindow()} src={userInfo.picture} alt="user-picture" />
                     <LogoutDiv hidden={showLogout}>
+                        <InvisibleDiv onClick={() => showWindow()}></InvisibleDiv>
                         <span onClick={() => { localStorage.removeItem("authorization"); navigate('/') }}>Logout</span>
                     </LogoutDiv>
                 </MenuDiv>

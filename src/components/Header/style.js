@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const InvisibleDiv = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    left: 0;
+`
+
 export const HeaderHeader = styled.header`
     font-family: 'Passion One', cursive;    
     position: fixed;
@@ -41,7 +51,6 @@ export const MenuDiv = styled.div`
         border-radius: 26.5px;
     }
 `
-
 export const RowSearchField = styled.div`
     box-sizing: border-box;
     position: relative;
@@ -103,6 +112,7 @@ export const SingleSearchResult = styled.div`
 `;
 
 export const LogoutDiv = styled.div`
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,6 +132,9 @@ export const LogoutDiv = styled.div`
     font-size: 17px;
     color: #FFFFFF;
     span {
+        border-radius: 0px 0px 20px 20px;
+        z-index: 3;
+        padding: 40px;
         margin-right: 10px;
     }
 `
