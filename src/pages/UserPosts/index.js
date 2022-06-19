@@ -13,7 +13,8 @@ export default function UserPosts() {
             try{
                 const auxUserData = JSON.parse(localStorage.getItem('userData'));
                 const authorization = JSON.parse(localStorage.getItem('authorization'));
-                const response = await getUserPostsRequest(parseInt(auxUserData[1]), { authorization });
+                const { token } = authorization;
+                const response = await getUserPostsRequest(parseInt(auxUserData[1]), { authorization: token });
                 setUserData(auxUserData);
                 if(response.status === 200){
                     setLoading({status: true, message: 'sucess'});
@@ -31,7 +32,7 @@ export default function UserPosts() {
     }, []);
     return (
         <Fragment>
-            <Header userInfo={{picture: userData[2]}} />
+            <Header />
             <Wrapper>
                 {!loading.status && <Loading />}
                 {loading.status && 

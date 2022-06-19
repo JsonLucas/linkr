@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useNavigate } from "react-router";
+import { getPostsRequest } from "../../api/services";
 import { useEffect, useState } from "react";
 import { FeedSection, ImgDiv, InfoDiv, LinkDiv } from "./style";
 import Loading from "../Loading";
@@ -11,16 +11,23 @@ export default function Feed({ counter }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setLoading(true);
-        const authorizaztion = JSON.parse(localStorage.getItem('authorization'));
-        axios.get('http://localhost:5000/getPosts', { headers: { authorizaztion } })
-            .then((res) => {
-                setPosts(res.data);
-            }).catch((err) => {
-                console.log(err);
-            }).finally(() => {
-                setLoading(false);
-            })
+        const getPosts = async () => {
+            try{
+                setLoading(true);
+                const authorizaztion = JSON.parse(localStorage.getItem('authorization'));
+                const { token } = authorizaztion
+                const response = await getPostsRequest({ authorizaztion: token });
+                if(response.status === 200){
+                    setPosts(response.data);
+                }else{
+                    alert('algum erro ocorreu.');
+                }
+            }catch(e){
+                console.log(e.message);
+            }
+            setLoading(false);
+        }
+        getPosts();
     }, [counter]);
 
     const userPosts = (e) => {

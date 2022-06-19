@@ -10,6 +10,21 @@ export const signUpRequest = async (body) => {
     return request;
 }
 
+export const getUserRequest = async (headers) => {
+    const request = await axiosConfig.get("/getUser", { headers });
+    return request;
+}
+
+export const getPostsRequest = async (headers) => {
+    const request = await axiosConfig.get('/getPosts', { headers });
+    return request;
+}
+
+export const setNewPost = async (body, headers) => {
+    const request = await axiosConfig.post('/newPost', body, { headers });
+    return request;
+}
+
 export const getUserPostsRequest = async (userId, headers) => {
     const request = await axiosConfig.get(`/users/${userId}`, { headers });
     return request;
