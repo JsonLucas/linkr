@@ -8,8 +8,8 @@ export default function AppRoutes(){
     return (
         <Routes>
             <Route exact path='/' element={<SignIn />} />
-            <Route exact path='/sign-up' element={<SignUp />} />
-            <Route exact path='/timeline' element={<Timeline/>} />
+            <Route path='/sign-up' element={<SignUp />} />
+            <Route path='/timeline' element={<Timeline/>} />
             <Route path='/users/:userId' element={<UserPosts />} />
         </Routes>
     );

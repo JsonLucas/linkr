@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { setNewPost } from "../../api/services";
-import { useState, useEffect } from "react";
 import { PostSection, ImgDiv, InputForm, UrlInput, ComentInput } from "./style";
 
 export default function Post({ counter, setCounter }) {
@@ -7,11 +7,11 @@ export default function Post({ counter, setCounter }) {
         link: '',
         commenter: ''
     });
-    const [loading, setLoading] = useState(false);
+    const [loadingPost, setLoadingPost] = useState(false);
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     async function postPost(e) {
         e.preventDefault();
-        setLoading(true);
+        setLoadingPost(true);
         try {
             const authorization = JSON.parse(localStorage.getItem("authorization"));
             const { token } = authorization;
@@ -25,7 +25,7 @@ export default function Post({ counter, setCounter }) {
             } else {
                 alert("Houve um erro ao publicar seu link");
             }
-            setLoading(false);
+            setLoadingPost(false);
         } catch (e) {
             console.log(e.message);
         }
@@ -42,18 +42,18 @@ export default function Post({ counter, setCounter }) {
                     value={postInfos.link}
                     placeholder="http://..."
                     required
-                    disabled={loading}
+                    disabled={loadingPost}
                     onChange={e => setPostInfos({ ...postInfos, link: e.target.value })}
                 />
                 <ComentInput
                     cols="30"
                     value={postInfos.commenter}
                     rows="10"
-                    disabled={loading}
+                    disabled={loadingPost}
                     placeholder="Awesome article about #javascript"
                     onChange={e => setPostInfos({ ...postInfos, commenter: e.target.value })}
                 ></ComentInput>
-                <button disabled={loading} type="submit">{!loading ? 'Publish' : 'Publishing...'}</button>
+                <button disabled={loadingPost} type="submit">{!loadingPost ? 'Publish' : 'Publishing...'}</button>
             </InputForm>
         </PostSection>
     );

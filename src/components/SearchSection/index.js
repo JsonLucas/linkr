@@ -15,20 +15,22 @@ import { IoIosClose, IoMdSearch } from 'react-icons/io';
 export default function SearchSection () {
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [loaded, setLoaded] = useState(true);
+    const [loadedSearch, setLoadedSearch] = useState(true);
     const [hidden, setHidden] = useState(true);
     const navigate = useNavigate();
     const searchUsers = async () => {
         try{
             const authorization = JSON.parse(localStorage.getItem('authorization'));
             const { token } = authorization;
-            setLoaded(false);
-            setHidden(false);
             if(search.length > 0){
+                setLoadedSearch(false);
+                setHidden(false);
                 const users = await getUserByQuery(search, { authorization: token });
                 const { data } = users;
                 setSearchResult(data);
-                setLoaded(true);
+                setLoadedSearch(true);
+            }else{
+                alert('O campo não pode ser vazio');
             }
         }catch(e){
             if(e.response){
@@ -51,16 +53,16 @@ export default function SearchSection () {
             onFocus={() => { search ? setHidden(false) : setHidden(true) }} />
             <SectionIconField>
                 <div>
-                    {!loaded && <IoIosClose size={25} onClick={() => { setSearch(''); }} 
+                    {!loadedSearch && <IoIosClose size={25} onClick={() => { setSearch(''); setHidden(true); setLoadedSearch(true); }} 
                     style={{cursor: 'pointer'}}  /> }
-                    {loaded && <IoMdSearch size={23} onClick={searchUsers} 
+                    {loadedSearch && <IoMdSearch size={23} onClick={searchUsers} 
                     style={{cursor: 'pointer'}}/>}
                 </div>
             </SectionIconField>
-            {!loaded && <SearchResults hidden={hidden}><h2>
+            {!loadedSearch && <SearchResults hidden={hidden}><h2>
                     <ThreeCircles height={30} width={30} color='#000000' /></h2>
                 </SearchResults>}
-            {loaded && 
+            {loadedSearch && 
             <SearchResults hidden={hidden} resultCount={searchResult.length}>
                 {searchResult.map((item, index) => (
                         <SingleSearchResult key={index}>
