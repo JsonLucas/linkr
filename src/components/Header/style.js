@@ -19,6 +19,7 @@ export const HeaderHeader = styled.header`
     }
 `
 
+
 export const HeaderTittle = styled.h3`
     margin-left: 28px;
     font-family: 'Passion One', cursive;
@@ -28,18 +29,15 @@ export const HeaderTittle = styled.h3`
 `
 
 export const MenuDiv = styled.div`
+    position: relative;
     display: flex;
     align-items: center;
     margin-right: 17px;
-    ion-icon{
-        font-size: 30px;
-        color: #FFF;
-        margin-right: 10px;
-    }
     img {
         object-fit: cover;
         width: 53px;
         height: 53px;
+        margin-left: 20px;
         border-radius: 26.5px;
     }
 `
@@ -103,3 +101,27 @@ export const SingleSearchResult = styled.div`
     padding: 5px 0px 5px 0px;
     display: flex;
 `;
+
+export const LogoutDiv = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: ${(props)=> props.hidden === true ? 'visible' : 'hidden'};
+    position: absolute;
+    background-color: #171717;
+    color: #FFF;
+    top: 62px;
+    right: -40px;
+    width: 150px;
+    height: 47px;
+    background: #171717;
+    border-radius: 0px 0px 20px 20px;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    color: #FFFFFF;
+    span {
+        margin-right: 10px;
+    }
+`

@@ -11,7 +11,8 @@ import {
     SearchField, 
     SearchResults, 
     SingleSearchResult, 
-    SectionIconField
+    SectionIconField,
+  LogoutDiv
 } from "./style";
 import { IoIosClose, IoMdSearch } from 'react-icons/io';
 
@@ -20,6 +21,7 @@ export default function Header({ userInfo }) {
     const [searchResult, setSearchResult] = useState([]);
     const [loaded, setLoaded] = useState(true);
     const [hidden, setHidden] = useState(true);
+    const [showLogout, setshowLogout] = useState(false);
     const navigate = useNavigate();
     const searchUsers = async () => {
         try{
@@ -40,6 +42,9 @@ export default function Header({ userInfo }) {
         const data = user.title.split('<>');
         localStorage.setItem('userData', JSON.stringify(data));
         navigate(`/users/${data[1]}`);
+    }
+    function showWindow() {
+        showLogout ? setshowLogout(false) : setshowLogout(true);
     }
     return (
         <HeaderHeader>
@@ -76,8 +81,12 @@ export default function Header({ userInfo }) {
                     </SearchResults>}
                 </RowSearchField>
                 <MenuDiv>
-                    <ion-icon name="chevron-down-outline"></ion-icon>
-                    <img src={userInfo.picture} alt="user-avatar" />
+                    <IoIosArrowDown style={{ position: 'absolute' }} visibility={showLogout ? 'hidden' : 'visible'} onClick={() => showWindow()} color="#fff" size="30px" name="chevron-down-outline"></IoIosArrowDown>
+                    <IoIosArrowUp visibility={showLogout ? 'visible' : 'hidden'} onClick={() => showWindow()} color="#fff" size="30px" name="chevron-down-outline"></IoIosArrowUp>
+                    <img src={userInfo.picture} alt="user-picture" />
+                    <LogoutDiv hidden={showLogout}>
+                        <span onClick={() => { localStorage.removeItem("authorization"); navigate('/') }}>Logout</span>
+                    </LogoutDiv>
                 </MenuDiv>
             </section>
         </HeaderHeader>

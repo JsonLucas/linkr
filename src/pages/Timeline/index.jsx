@@ -10,15 +10,17 @@ import Header from "../../components/Header";
 export default function Timeline() {
     const navigate = useNavigate();
     const authorization = JSON.parse(localStorage.getItem("authorization"));
-    if (!authorization) {
-        navigate('/login');
-    }
+
     const [userInfo, setUserInfo] = useState({
         name: '',
         picture: ''
     });
+
     const [counter, setCounter] = useState(0);
     useEffect(() => {
+        if (authorization === null) {
+            navigate('/');
+        }
         const config = {
             headers: {
                 "authorization": `${authorization}`
