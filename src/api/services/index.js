@@ -14,3 +14,8 @@ export const getUserPostsRequest = async (userId, headers) => {
     const request = await axiosConfig.get(`/users/${userId}`, { headers });
     return request;
 }
+
+export const getUserByQuery = async (queryString, headers) => {
+    const request = await axiosConfig.get(`/users/query/${queryString}`, { headers });
+    return request;
+}

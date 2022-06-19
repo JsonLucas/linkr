@@ -24,9 +24,10 @@ export default function Feed({ counter }) {
     }, [counter]);
 
     const userPosts = (e) => {
-        const userId = e.target;
-        localStorage.setItem('userData', userId.title);
-        navigate(`/users/${userId.innerHTML}`);
+        const user = e.target;
+        const data = user.title.split('<>');
+        localStorage.setItem('userData', JSON.stringify(data));
+        navigate(`/users/${data[1]}`);
     }
 
     if (!loading) {
@@ -35,7 +36,7 @@ export default function Feed({ counter }) {
                 {posts.map((el, index) => {
                     return (
                         <FeedSection key={index}>
-                            <ImgDiv>
+                            <ImgDiv isSearchResult={false}>
                                 <img src={el.picture} alt="avatar-img" />
                             </ImgDiv>
                             <InfoDiv>

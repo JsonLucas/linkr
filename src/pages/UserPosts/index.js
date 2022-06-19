@@ -11,10 +11,10 @@ export default function UserPosts() {
     useEffect(() => {
         const getUserPosts = async () => {
             try{
-                const auxUserData = localStorage.getItem('userData').split('<>');
+                const auxUserData = JSON.parse(localStorage.getItem('userData'));
                 const authorization = JSON.parse(localStorage.getItem('authorization'));
+                const response = await getUserPostsRequest(parseInt(auxUserData[1]), { authorization });
                 setUserData(auxUserData);
-                const response = await getUserPostsRequest(auxUserData[1], { authorization });
                 if(response.status === 200){
                     setLoading({status: true, message: 'sucess'});
                     setUserPosts(response.data);
