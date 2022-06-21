@@ -1,4 +1,4 @@
-import { MainTimeline, Posts } from "./style";
+import { MainTimeline, Posts, TimelineTittle } from "./style";
 import Feed from "../../components/Feed";
 import Header from "../../components/Header";
 
@@ -7,7 +7,7 @@ export default function Timeline() {
         <MainTimeline>
             <Header />
             <Posts>
-                <h1>timeline</h1>
+                <TimelineTittle>timeline</TimelineTittle>
                 <Feed />
             </Posts>
         </MainTimeline>

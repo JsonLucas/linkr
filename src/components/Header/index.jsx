@@ -5,7 +5,8 @@ import {
     MenuDiv, 
     HeaderTittle, 
     LogoutDiv,
-    InvisibleDiv
+    InvisibleDiv,
+    HeaderSection
 } from "./style";
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import SearchSection from "../SearchSection";
@@ -36,7 +37,7 @@ export default function Header() {
     }
     return (
         <HeaderHeader>
-            <section>
+            <HeaderSection>
                 <HeaderTittle onClick={() => { navigate('/timeline'); }}>linkr</HeaderTittle>
                 <SearchSection />
                 <MenuDiv style={styleCursor}>
@@ -48,7 +49,7 @@ export default function Header() {
                         <span onClick={logout}>Logout</span>
                     </LogoutDiv>
                 </MenuDiv>
-            </section>
+            </HeaderSection>
         </HeaderHeader>
     );
 }
