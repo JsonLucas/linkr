@@ -4,6 +4,7 @@ export const FeedSection = styled.section`
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
     display: flex;
     flex-direction: row;
+    width: 100%;
     max-width: 611px;
     background: #171717;
     border-radius: 16px;
@@ -11,10 +12,12 @@ export const FeedSection = styled.section`
     @media (max-width:425px) {
         align-items: center;
         justify-content: center;
+        border-radius: 0px;
     }
 `
 
 export const InfoDiv = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     span{
@@ -50,12 +53,16 @@ export const ImgDiv = styled.div`
         object-fit: cover;
         border-radius: 50%;
     }
+    @media (max-width:425px) {
+      align-self: flex-start;
+    }
 `
 
 export const LinkDiv = styled.div`
-    width: 503px;
+    max-width: 503px;
     height: 155px;
     border: 1px solid #4D4D4D;
     border-radius: 11px;
     margin-bottom: 20px;
+    margin-right: 18px;
 `

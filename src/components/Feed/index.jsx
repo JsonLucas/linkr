@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { getPostsRequest } from "../../api/services";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FeedSection, ImgDiv, InfoDiv, LinkDiv } from "./style";
 import Loading from "../Loading";
 import Post from "../Post";

@@ -7,7 +7,6 @@ export const MainTimeline = styled.main`
     align-items: center;
     justify-content: center;
     background-color: #333333;
-    padding: 20px;
     margin: 0 auto;
     @media (max-width:425px) {
         padding: 0;
@@ -27,6 +26,7 @@ export const TimelineTittle = styled.h1`
     @media (max-width:425px) {
         margin-top: 130px;
         margin-left: 17px;
+        margin-bottom: 25px;
     }
 `
 
