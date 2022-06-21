@@ -19,6 +19,10 @@ export const RowForm = styled.form`
     box-sizing: border-box;
     width: 90%;
     margin: 191px auto;
+    @media (max-width:425px) {
+        position: absolute;
+        top: 0px;
+    }
 `;
 
 export const RowField = styled.div`
