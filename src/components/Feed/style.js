@@ -4,10 +4,14 @@ export const FeedSection = styled.section`
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
     display: flex;
     flex-direction: row;
-    width: 611px;
+    max-width: 611px;
     background: #171717;
     border-radius: 16px;
     margin-bottom: 16px;
+    @media (max-width:425px) {
+        align-items: center;
+        justify-content: center;
+    }
 `
 
 export const InfoDiv = styled.div`

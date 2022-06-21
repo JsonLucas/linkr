@@ -34,10 +34,10 @@ export default function Feed() {
         navigate(`/users/${data[1]}`);
     }
     return (
-        <Fragment>
+        <>
             <Post counter={counter} setCounter={setCounter} />
             {loadingFeed && <Loading />}
-            {!loadingFeed && <Fragment>
+            {!loadingFeed && <>
                     {posts.map((el, index) => {
                         return (
                             <FeedSection key={index}>
@@ -57,8 +57,8 @@ export default function Feed() {
                             </FeedSection>
                         )
                     })}
-                </Fragment>
+                </>
             }
-        </Fragment>
+        </>
     );
 }

@@ -8,6 +8,11 @@ export const PostSection = styled.section`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 16px;
     margin-bottom: 29px;
+    @media (max-width:425px) {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
 `
 
 export const ImgDiv = styled.div`
@@ -17,6 +22,9 @@ padding: 18px;
         width: 50px;
         height: 50px;
         object-fit: cover;
+    }
+    @media (max-width:425px) {
+        display: none;
     }
 `
 
@@ -52,6 +60,17 @@ export const InputForm = styled.form`
         border-radius: 5px;
         border: none;
     }
+    @media (max-width:425px) {
+        margin: 0;
+        padding: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        button{
+            width: 112px;
+            height: 22px;
+        }
+    }
 `
 
 export const UrlInput = styled.input`
@@ -63,6 +82,9 @@ export const UrlInput = styled.input`
     padding: 12px;
     ::placeholder{
         color: #949494;
+    }
+    @media (max-width:425px) {
+        width: 100%;
     }
 `
 
@@ -77,5 +99,8 @@ export const ComentInput = styled.textarea`
     ::placeholder {
         align-self: center;
         color: #949494;
+    }
+    @media (max-width:425px) {
+        width: 100%;
     }
 `

@@ -5,11 +5,23 @@ export const RowSearchField = styled.div`
     position: relative;
     width: 563px;
     height: 45px;
-    margin: 13px auto;
+    margin: 13px 10px;
     background-color: white;
     border-radius: 8px;
     z-index: 1;
     display: flex;
+    @media (max-width:425px) {
+        display: flex;
+        justify-self: center;
+        align-self: center;
+        position: absolute;
+        margin: 0 auto;
+        z-index: 2;
+        top: 80px;
+        right: 10px;
+        left: 10px;
+        width: 95%;
+    }
 `;
 
 export const SearchField = styled.input`
