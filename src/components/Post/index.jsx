@@ -13,11 +13,15 @@ export default function Post({ counter, setCounter }) {
         e.preventDefault();
         setLoadingPost(true);
         try {
-            const authorization = JSON.parse(localStorage.getItem("authorization"));
-            const { token } = authorization;
+            const token = JSON.parse(localStorage.getItem("authorization"));
             const { link, commenter } = postInfos;
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
             const body = { link, commenter };
-            const response = await setNewPost(body, { authorization: token });
+            const response = await setNewPost(body, config);
             if (response.status === 201) {
                 alert("Publicação postada!");
                 setPostInfos({ link: '', commenter: '' });

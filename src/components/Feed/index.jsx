@@ -13,12 +13,12 @@ export default function Feed() {
 
     useEffect(() => {
         const getPosts = async () => {
-            try{
+            try {
                 const authorizaztion = JSON.parse(localStorage.getItem('authorization'));
                 const { token } = authorizaztion
                 const response = await getPostsRequest({ authorizaztion: token });
                 setPosts(response.data);
-            }catch(e){
+            } catch (e) {
                 alert('algum erro ocorreu.');
                 console.log(e.message);
             }
@@ -38,26 +38,26 @@ export default function Feed() {
             <Post counter={counter} setCounter={setCounter} />
             {loadingFeed && <Loading />}
             {!loadingFeed && <Fragment>
-                    {posts.map((el, index) => {
-                        return (
-                            <FeedSection key={index}>
-                                <ImgDiv isSearchResult={false}>
-                                    <img src={el.picture} alt="avatar-img" />
-                                </ImgDiv>
-                                <InfoDiv>
-                                    <span title={`${el.name}<>${el.id}<>${el.picture}`} 
+                {posts.map((el, index) => {
+                    return (
+                        <FeedSection key={index}>
+                            <ImgDiv isSearchResult={false}>
+                                <img src={el.picture} alt="avatar-img" />
+                            </ImgDiv>
+                            <InfoDiv>
+                                <span title={`${el.name}<>${el.id}<>${el.picture}`}
                                     onClick={userPosts}>{el.name}</span>
-                                    <h2>{el.commenter}</h2>
-                                    <a href={el.link}>
-                                        <LinkDiv>
+                                <h2>{el.commenter}</h2>
+                                <a href={el.link}>
+                                    <LinkDiv>
 
-                                        </LinkDiv>
-                                    </a>
-                                </InfoDiv>
-                            </FeedSection>
-                        )
-                    })}
-                </Fragment>
+                                    </LinkDiv>
+                                </a>
+                            </InfoDiv>
+                        </FeedSection>
+                    )
+                })}
+            </Fragment>
             }
         </Fragment>
     );

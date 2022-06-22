@@ -20,6 +20,7 @@ export default function LoginForm(){
                 localStorage.setItem('authorization', JSON.stringify(token));
                 localStorage.setItem('userInfo', JSON.stringify({name, picture}));
                 alert('login efetuado com sucesso.');
+                console.log(token);
                 navigate('/timeline');
             }else{
                 alert(response.data);
