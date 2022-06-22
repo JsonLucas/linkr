@@ -41,7 +41,7 @@ export default function Feed() {
         <>
             <Post counter={counter} setCounter={setCounter} />
             {loadingFeed && <Loading />}
-            {!loadingFeed && <Fragment>
+            {!loadingFeed && <>
                 {posts.map((el, index) => {
                     return (
                         <FeedSection key={index}>
@@ -60,7 +60,7 @@ export default function Feed() {
                         </FeedSection>
                     )
                 })}
-                </>
+            </>
             }
         </>
     );
