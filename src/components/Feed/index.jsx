@@ -14,9 +14,13 @@ export default function Feed() {
     useEffect(() => {
         const getPosts = async () => {
             try {
-                const authorizaztion = JSON.parse(localStorage.getItem('authorization'));
-                const { token } = authorizaztion
-                const response = await getPostsRequest({ authorizaztion: token });
+                const token = JSON.parse(localStorage.getItem('authorization'));
+                const config = {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+                const response = await getPostsRequest(config);
                 setPosts(response.data);
             } catch (e) {
                 alert('algum erro ocorreu.');

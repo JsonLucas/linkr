@@ -13,8 +13,8 @@ export default function Post({ counter, setCounter }) {
         e.preventDefault();
         setLoadingPost(true);
         try {
-            const token = JSON.parse(localStorage.getItem("authorization"));
             const { link, commenter } = postInfos;
+            const token = JSON.parse(localStorage.getItem("authorization"));
             const config = {
                 headers: {
                     "Authorization": `Bearer ${token}`

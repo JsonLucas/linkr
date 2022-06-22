@@ -20,12 +20,16 @@ export default function SearchSection () {
     const navigate = useNavigate();
     const searchUsers = async () => {
         try{
-            const authorization = JSON.parse(localStorage.getItem('authorization'));
-            const { token } = authorization;
             if(search.length > 0){
                 setLoadedSearch(false);
                 setHidden(false);
-                const users = await getUserByQuery(search, { authorization: token });
+                const token = JSON.parse(localStorage.getItem('authorization'));
+                const config = {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+                const users = await getUserByQuery(search, config);
                 const { data } = users;
                 setSearchResult(data);
                 setLoadedSearch(true);
@@ -44,7 +48,9 @@ export default function SearchSection () {
         const user = e.target;
         const data = user.title.split('<>');
         localStorage.setItem('userData', JSON.stringify(data));
+        console.log(data);
         navigate(`/users/${data[1]}`);
+
     }
     return (
         <RowSearchField>
