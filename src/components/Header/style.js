@@ -9,6 +9,12 @@ export const InvisibleDiv = styled.div`
     z-index: 1;
     left: 0;
 `
+export const HeaderSection = styled.section`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+`
 
 export const HeaderHeader = styled.header`
     font-family: 'Passion One', cursive;    
@@ -37,6 +43,9 @@ export const HeaderTittle = styled.h3`
     font-size: 49px;
     color: #FFFFFF;
     cursor: pointer;
+    @media (max-width: 425px){
+        font-size: 45px;
+    }
 `
 
 export const MenuDiv = styled.div`
@@ -50,7 +59,12 @@ export const MenuDiv = styled.div`
         height: 53px;
         margin-left: 20px;
         border-radius: 26.5px;
+        @media (max-width: 425px){
+            width: 41px;
+            height: 41px;
     }
+    }
+    
 `
 export const LogoutDiv = styled.div`
     z-index: 2;
@@ -77,5 +91,8 @@ export const LogoutDiv = styled.div`
         z-index: 3;
         padding: 40px;
         margin-right: 10px;
+    }
+    @media (max-width: 425px) {
+        top: 55px;
     }
 `

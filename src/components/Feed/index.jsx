@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { getPostsRequest } from "../../api/services";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FeedSection, ImgDiv, InfoDiv, LinkDiv } from "./style";
 import Loading from "../Loading";
 import Post from "../Post";
@@ -38,7 +38,7 @@ export default function Feed() {
         navigate(`/users/${data[1]}`);
     }
     return (
-        <Fragment>
+        <>
             <Post counter={counter} setCounter={setCounter} />
             {loadingFeed && <Loading />}
             {!loadingFeed && <Fragment>
@@ -54,15 +54,14 @@ export default function Feed() {
                                 <h2>{el.commenter}</h2>
                                 <a href={el.link}>
                                     <LinkDiv>
-
                                     </LinkDiv>
                                 </a>
                             </InfoDiv>
                         </FeedSection>
                     )
                 })}
-            </Fragment>
+                </>
             }
-        </Fragment>
+        </>
     );
 }

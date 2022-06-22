@@ -2,12 +2,18 @@ import styled from "styled-components";
 
 export const PostSection = styled.section`
     display: flex;
-    width: 611px;
+    width: 100%;
     height: 209px;
     background-color: #FFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 16px;
     margin-bottom: 29px;
+    @media (max-width:425px) {
+        align-items: center;
+        justify-content: center;
+        border-radius: 0px;
+        width: 100%;
+    }
 `
 
 export const ImgDiv = styled.div`
@@ -18,6 +24,9 @@ padding: 18px;
         height: 50px;
         object-fit: cover;
     }
+    @media (max-width:425px) {
+        display: none;
+    }
 `
 
 export const InputForm = styled.form`
@@ -25,6 +34,7 @@ export const InputForm = styled.form`
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
     margin-right: 20px;
     gap: 5px;
     h2 {
@@ -52,10 +62,27 @@ export const InputForm = styled.form`
         border-radius: 5px;
         border: none;
     }
+    @media (max-width:425px) {
+        margin: 0;
+        padding: 10px;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        button{
+            width: 112px;
+            height: 22px;
+        }
+        h2{
+            margin: 0;
+            font-weight: 300;
+font-size: 17px;
+        }
+    }
 `
 
 export const UrlInput = styled.input`
-    width: 503px;
+    max-width: 503px;
+    width: 100%;
     height: 30px;
     background: #EFEFEF;
     border-radius: 5px;
@@ -64,10 +91,14 @@ export const UrlInput = styled.input`
     ::placeholder{
         color: #949494;
     }
+    @media (max-width:425px) {
+        width: 100%;
+    }
 `
 
 export const ComentInput = styled.textarea`
-    width: 502px;
+    max-width: 502px;
+    width: 100%;
     height: 66px;
     padding: 12px;
     background: #EFEFEF;
@@ -77,5 +108,8 @@ export const ComentInput = styled.textarea`
     ::placeholder {
         align-self: center;
         color: #949494;
+    }
+    @media (max-width:425px) {
+        width: 100%;
     }
 `
