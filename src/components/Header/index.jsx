@@ -22,9 +22,13 @@ export default function Header() {
     }
     const logout = async () => {
         try{
-            const authorization = JSON.parse(localStorage.getItem('authorization'));
-            const { token } = authorization;
-            await logoutRequest({ authorization: token });
+            const token = JSON.parse(localStorage.getItem('authorization'));
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+            await logoutRequest(config);
             alert('logout efetuado.');
             localStorage.removeItem("authorization");
             navigate('/');

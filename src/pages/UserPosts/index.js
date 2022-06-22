@@ -12,9 +12,13 @@ export default function UserPosts() {
         const getUserPosts = async () => {
             try{
                 const auxUserData = JSON.parse(localStorage.getItem('userData'));
-                const authorization = JSON.parse(localStorage.getItem('authorization'));
-                const { token } = authorization;
-                const response = await getUserPostsRequest(parseInt(auxUserData[1]), { authorization: token });
+                const token = JSON.parse(localStorage.getItem('authorization'));
+                const config = {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+                const response = await getUserPostsRequest(parseInt(auxUserData[1]), config);
                 console.log(`teste ${response}`);
                 setPosts(response.data);
                 setLoading({status: true, message: 'sucess'});
