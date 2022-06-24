@@ -59,10 +59,66 @@ export const ImgDiv = styled.div`
 `
 
 export const LinkDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
     max-width: 503px;
-    height: 155px;
     border: 1px solid #4D4D4D;
     border-radius: 11px;
     margin-bottom: 20px;
     margin-right: 18px;
+    display: flex;
+    img {
+        width: 155px;
+        height: 155px;
+        border-radius: 0px 12px 13px 0px;
+    }
+    
+    @media (max-width:425px) {
+        width: 300px;
+        img{
+            width: 95px;
+            height: 115px;
+            object-fit: cover;
+        }
+    }
+    
+`
+
+export const LinkPreviewDiv = styled.div`
+
+    display: flex;
+    padding: 20px;
+    padding-right: 0px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 155px;
+    h4 {
+        font-weight: 400;
+        font-size: 16px;
+    }
+    h5 {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 13px;
+        color: #9B9595;
+        overflow: hidden;
+        word-break: break-all;
+    }
+    h6 {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 13px;
+        color: #CECECE;
+    }
+
+    @media (max-width:425px) {
+        height: 115px;
+        padding: 10px;
+        h4{
+            font-size: 11px;
+        }
+        h5, h6{
+            font-size: 9px;
+        }
+    }
 `

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { getPostsRequest } from "../../api/services";
 import { useEffect, useState } from "react";
-import { FeedSection, ImgDiv, InfoDiv, LinkDiv } from "./style";
+import { FeedSection, ImgDiv, InfoDiv, LinkDiv, LinkPreviewDiv } from "./style";
 import Loading from "../Loading";
 import Post from "../Post";
 
@@ -54,6 +54,12 @@ export default function Feed() {
                                 <h2>{el.commenter}</h2>
                                 <a href={el.link}>
                                     <LinkDiv>
+                                        <LinkPreviewDiv>
+                                            <h4>{el.tittle}</h4>
+                                            <h5>{el.description}</h5>
+                                            <h6>{el.link}</h6>
+                                        </LinkPreviewDiv>
+                                        <img src={el.image} alt="url-img" />
                                     </LinkDiv>
                                 </a>
                             </InfoDiv>
