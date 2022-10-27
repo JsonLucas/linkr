@@ -1,12 +1,12 @@
 import { Box } from "@chakra-ui/react";
-import { HomePreface } from "../../components/HomePreface";
-import { Login } from "../../components/Login";
+import { Header } from "../../components/Header";
+import { Posts } from "../../components/Posts";
 
-export function Home(){
+export function Home() {
 	return (
-		<Box display='flex' h='100%' w='100%' position={'absolute'}>
-			<HomePreface />
-			<Login />
-		</Box>
+		<>
+			<Header />
+			<Posts />
+		</>
 	);
 }
