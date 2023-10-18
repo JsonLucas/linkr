@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+    id Int @id @default(autoincrement())
+    name String
+    nickname String @unique
+    email String @unique
+    password String
+    phone String @unique
+    created_at DateTime? @default(now())
+    updated_at DateTime?
+    picture String?
+    post posts[]
+    post_interaction post_interactions[]
+}
+
+model topics {
+    id Int @id @default(autoincrement())
+    name String
+    created_at DateTime @default(now())
+    //post posts[]
+}
+
+model interaction_types {
+    id Int @id @default(autoincrement())
+    name String @unique
+    created_at DateTime @default(now())
+    post_interaction post_interactions[]
+}
+
+model posts {
+    id Int @id @default(autoincrement())
+    name String
+    attachments String[] @default([]) 
+    user_id Int
+    hashtags Int[] @default([])
+    created_at DateTime? @default(now())
+    updated_at DateTime?
+    user users @relation(references: [id], fields: [user_id])
+    //hashtag topics @relation(references: [id], fields: [hashtags])
+    post_interaction post_interactions[]
+}
+
+model post_interactions {
+    id Int @id @default(autoincrement())
+    content String?
+    post_id Int
+    user_id Int
+    interaction_type_id Int
+    created_at DateTime? @default(now())
+    updated_at DateTime?
+    post posts @relation(references: [id], fields: [post_id])
+    user users @relation(references: [id], fields: [user_id])
+    interaction interaction_types @relation(references: [id], fields: [interaction_type_id])
+}
