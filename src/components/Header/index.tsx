@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 
 export function Header() {
 	const [toggleLogout, setToggleLogout] = useState<boolean>(false);
-	const navigate = useNavigate();
 	const { removeToken } = useToken();
+	const navigate = useNavigate();
 	const logout = () => {
 		removeToken();
 		toast('Logout efetuado com sucesso!');
@@ -27,9 +27,10 @@ export function Header() {
 					<Image src='https://static.wikia.nocookie.net/ea992db8-f056-4087-847e-ee703217a783/scale-to-width/755' 
 					w='100%' h='100%' borderRadius='50%' />
 				</Box>
-				{toggleLogout && <Box p='5px' zIndex={2} bgColor='black' w='100%' textAlign='center' color='white' 
+				{toggleLogout && <Box p='8px' zIndex={2} bgColor='black' w='100%' textAlign='center' color='white' 
 				borderRadius='0px 0px 10px 10px' position='absolute' top='35px' onClick={logout}>
-					Sair	
+					<Text>Ver Perfil</Text>	
+					<Text>Sair</Text>
 				</Box>}
 			</Box>
 		</Box>

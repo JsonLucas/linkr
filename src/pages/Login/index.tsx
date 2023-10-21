@@ -1,12 +1,12 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { HomePreface } from "../../components/HomePreface";
 import { Login } from "../../components/Login";
 
 export function SignIn(){
 	return (
-		<Box display='flex' h='100%' w='100%' position={'absolute'}>
+		<Flex position='absolute' h='100%' w='100%'>
 			<HomePreface />
 			<Login />
-		</Box>
+		</Flex>
 	);
 }
