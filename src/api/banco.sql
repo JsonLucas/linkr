@@ -25,7 +25,8 @@ CREATE TABLE interaction_types (
 
 CREATE TABLE posts (
     id SERIAL NOT NULL PRIMARY KEY,
-    name TEXT NOT NULL,
+    name TEXT,
+    content TEXT NOT NULL,
     attachments TEXT[], 
     user_id INT NOT NULL REFERENCES users(id),
     hashtags INT[] REFERENCES topics(id),

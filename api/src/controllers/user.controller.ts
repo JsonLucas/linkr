@@ -1,18 +1,14 @@
-import { Request, Response, Get, Post, Put, Controller } from "@nestjs/common";
-
+import { Controller, Post, Request as Req, Response as Res } from "@nestjs/common";
+import { Request, Response } from "express";
 
 @Controller('user')
 export class UserController {
-    constructor(){}
-
-    @Post('sign-in')
-    async signIn(@Request() req, @Response() res) {
-        const { body } = req;
-    }
+    constructor() { }
 
     @Post('sign-up')
-    async signUp(@Request() req, @Response() res) {
-        const { body } = req;
+    async signUp(@Req() req: Request, @Res() res: Response) {
+        const { input } = req.body;
+        console.log(req.body);
+        res.status(200).send({ id: 1 })
     }
 }
-
