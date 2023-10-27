@@ -4,7 +4,7 @@ import { Login } from "../../components/Login";
 
 export function SignIn(){
 	return (
-		<Flex position='absolute' h='100%' w='100%'>
+		<Flex bgColor='aqua' h='100vh' w='100%'>
 			<HomePreface />
 			<Login />
 		</Flex>

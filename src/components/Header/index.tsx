@@ -1,4 +1,4 @@
-import { Box, Text, Image } from "@chakra-ui/react";
+import { Box, Text, Image, Flex } from "@chakra-ui/react";
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { useState } from 'react';
 import { useToken } from "../../hooks/useToken";
@@ -15,9 +15,9 @@ export function Header() {
 		navigate('/');
 	}
 	return (
-		<Box p='15px' h='60px' w='100%' bgColor='black' display='flex' flexDir='row' justifyContent='space-between' alignItems='center'>
+		<Flex p='15px' h='60px' w='100%' bgColor='black' zIndex={99} position='fixed' justifyContent='space-between' alignItems='center'>
 			<Box color='white' fontWeight='bold'>
-				<Text>linkr</Text>
+				<Text onClick={() => navigate('/')}>linkr</Text>
 			</Box>
 			<Box display='flex' justifyContent='space-around' alignItems='center' flexDir='row' w='80px' h='100%' cursor='pointer' 
 			position='relative' onClick={() => { toggleLogout ? setToggleLogout(false) : setToggleLogout(true); }}>
@@ -33,6 +33,6 @@ export function Header() {
 					<Text>Sair</Text>
 				</Box>}
 			</Box>
-		</Box>
+		</Flex>
 	);
 }

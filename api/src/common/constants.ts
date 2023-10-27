@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 export const port = process.env.PORT || 5000;
 export const jwtSecret = process.env.JWT_SECRET;
 export const cryptoSecretKey = process.env.CRYPTO_SECRET;

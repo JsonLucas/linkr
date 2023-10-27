@@ -6,19 +6,21 @@ import { CardSinglePost } from "../../components/CardSinglePost";
 
 export function Home() {
 	return (
-		<>
+		<VStack spacing={0} minH='100vh'>
 			<Header />
-			<Box w='100%' h='100%' bgColor='#333' position='absolute'>
+			<Box w='100%' h='100%' bgColor='#333'>
 				<Flex direction='column' justifyContent='space-around' w='60%' m='auto' mt='50px'>
 					<Flex mt='40px' w='100%' justifyContent='space-between'>
 						<CardCreatePost />
 						<CardHashtags />
 					</Flex>
 				</Flex>
-				<Flex direction='column' w='60%' mt='25px' marginX='auto'>
+				<VStack spacing={3} w='60%' mt='25px' marginX='auto' alignItems='flex-start'>
 					<CardSinglePost />
-				</Flex>
+					<CardSinglePost />
+					<CardSinglePost />
+				</VStack>
 			</Box>
-		</>
+		</VStack>
 	);
 }
